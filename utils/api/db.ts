@@ -1,5 +1,4 @@
 import mysql from "mysql2/promise";
-import Long from "long";
 
 const pool: mysql.Pool = mysql.createPool({
   supportBigNumbers: true,
