@@ -2,6 +2,7 @@ import "nprogress/nprogress.css"
 import "@/app/globals.css"
 import "@/public/fonts/iconfont.css"
 import { Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react';
 import Layout from "@/components/layouts/Layout"
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
         <Layout>
           {children}
         </Layout>
+        <Analytics />
       </body>
     </html>
   )
