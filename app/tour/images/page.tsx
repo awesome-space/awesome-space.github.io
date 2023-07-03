@@ -16,7 +16,7 @@ export default function TourImages() {
         {
           images.map((image, index) => {
             return (
-              <div className="w-full md:w-1/2 lg:w-1/4 px-4">
+              <div className="w-full md:w-1/2 lg:w-1/4 px-4" key={image.src + index}>
                 <Image src={image.src} width={256} height={512} alt={image.title} className="object-cover"></Image>
               </div>
             )
