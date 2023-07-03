@@ -1,14 +1,13 @@
 const fetchUtils = {
   async get(url: string, headers = {}) {
     try {
-      const response = await fetch(url, {
-        method: 'GET',
+      const response = await fetch(`/api/${url}`, {
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           ...headers,
         },
       });
-
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
@@ -18,7 +17,7 @@ const fetchUtils = {
       console.error(error);
       throw error;
     }
-  }
-}
+  },
+};
 
 export default fetchUtils;
