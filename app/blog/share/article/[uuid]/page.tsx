@@ -15,7 +15,7 @@ interface Article {
 
 
 export default async function ShareArticle({ params }: { params: { uuid: string } }) {
-  const { code, data: articleInfo }: { code: number, data: Article } = await request.get(`https://blogapi.hewenyao.top/api/article/${params.uuid}`)
+  const { code, data: articleInfo }: { code: number, data: Article } = await request.get(`/article/${params.uuid}`)
   return (
     <article className="w-full py-16 flex flex-col justify-center">
       <h1 className="text-4xl font-bold mb-4 text-center">{articleInfo.title}</h1>
@@ -23,12 +23,4 @@ export default async function ShareArticle({ params }: { params: { uuid: string 
       <MdView mdText={articleInfo.md_text}></MdView>
     </article>
   )
-}
-
-
-export async function generateStaticParams() {
-  const { data: { list = [] } } = await request.get("https://blogapi.hewenyao.top/api/article/list?page_num=1&page_size=10");
-  return list.map((post: Article) => ({
-    uuid: post.id,
-  }))
 }
