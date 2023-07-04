@@ -15,7 +15,7 @@ const HotNewsItem = ({
       <ul className="h-80 overflow-y-auto">
         {data.data.map((item, index) => {
           return (
-            <div className="flex">
+            <div className="flex" key={item.url}>
               <span className="shrink-0">{index + 1} .</span>
               <a href={item.url} target="_blank">
                 <li key={item.id}>{item.title}</li>
