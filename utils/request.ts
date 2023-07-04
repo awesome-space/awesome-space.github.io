@@ -1,7 +1,12 @@
 const fetchUtils = {
   async get(url: string, headers = {}) {
     try {
-      const response = await fetch(`/api/${url}`, {
+      const BASE_URL = "/api/";
+      const reqURL =
+        url.startsWith("http://") || url.startsWith("https://")
+          ? url
+          : `${BASE_URL}/${url}`;
+      const response = await fetch(reqURL, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
