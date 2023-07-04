@@ -1,6 +1,6 @@
 const links: Array<{ href: string, label: string }> = [
   {
-    href: "",
+    href: "/",
     label: "主页",
   },
   {

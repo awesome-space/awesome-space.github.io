@@ -1,5 +1,4 @@
 import ArticleList from "@/components/blog/article/List";
-import {GET} from "@/app/api/article/list/route";
 /**
  * 博客页面
  * @returns JSX.Element

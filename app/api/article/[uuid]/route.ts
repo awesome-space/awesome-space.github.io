@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import dbPool from "@/utils/api/db";
 
 /**
- * 
+ *
  * @param request HTTP 请求
  * @param params 请求参数
  * @returns
