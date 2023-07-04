@@ -18,7 +18,7 @@ const HotNewsItem = ({
             <div className="flex" key={item.url}>
               <span className="shrink-0">{index + 1} .</span>
               <a href={item.url} target="_blank">
-                <li key={item.id}>{item.title}</li>
+                <li>{item.title}</li>
               </a>
             </div>
           );
@@ -47,7 +47,7 @@ export default function HotNews() {
   return (
     <div className="flex gap-4">
       {newsData.map((item) => {
-        return <HotNewsItem className="w-1/3 rounded-md border p-2" key={item.type} data={item} />;
+        return <HotNewsItem className="w-1/2 rounded-md border p-2" key={item.type} data={item} />;
       })}
     </div>
   );

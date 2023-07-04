@@ -19,6 +19,20 @@ const zhihuHot = async () => {
   });
 };
 
+const weiboHot = async () => {
+  const {
+    data: { realtime = [] },
+  } = await fetchUtils.get("https://weibo.com/ajax/side/hotSearch");
+
+  return realtime.map((item: any) => {
+    const { note: title, word_scheme } = item;
+    return {
+      title,
+      url: `https://s.weibo.com/weibo?q=/${word_scheme}`,
+    };
+  });
+};
+
 /**
  * GET 请求
  */
@@ -30,6 +44,11 @@ export const GET = async () => {
         type: "zhihu",
         name: "知乎热榜",
         data: await zhihuHot(),
+      },
+      {
+        type: "weibo",
+        name: "微博热榜",
+        data: await weiboHot(),
       },
     ],
   });
