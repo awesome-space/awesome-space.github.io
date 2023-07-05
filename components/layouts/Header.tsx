@@ -27,6 +27,12 @@ const DarkModeToggle = function () {
   );
 };
 
+/**
+ * 桌面程序
+ *
+ * @param param0
+ * @returns
+ */
 const DesktopNav = ({
   links,
 }: {
@@ -54,11 +60,17 @@ const DesktopNav = ({
             </Link>
           );
         })}
+        <DarkModeToggle />
       </div>
     </nav>
   );
 };
 
+/**
+ * 移动端
+ * @param param0
+ * @returns
+ */
 const MobileNav = ({
   links,
 }: {
@@ -93,6 +105,7 @@ const MobileNav = ({
                 </Link>
               );
             })}
+            <DarkModeToggle />
           </div>
         )}
       </div>
