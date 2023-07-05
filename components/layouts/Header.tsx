@@ -34,7 +34,7 @@ const DesktopNav = ({
 }) => {
   const pathname = usePathname();
   return (
-    <nav className={`sm:flex hidden  h-16 justify-between items-center`}>
+    <nav className={"sm:flex hidden  h-16 justify-between items-center"}>
       <Link href="/" className="font-bold">
         He's PersonSite
       </Link>
@@ -44,12 +44,9 @@ const DesktopNav = ({
             <Link
               key={link.href}
               href={link.href}
-              className={
-                "cursor-pointer hover:text-blue-500 " +
-                (pathname === link.href
-                  ? "text-blue-500 underline-offset-2"
-                  : "")
-              }
+              className={`cursor-pointer hover:text-blue-500 ${
+                pathname === link.href ? "text-blue-500 underline-offset-2" : ""
+              }`}
             >
               {link.label}
             </Link>
@@ -70,7 +67,7 @@ const MobileNav = ({
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   return (
-    <nav className={`sm:hidden flex h-16 justify-between items-center px-4`}>
+    <nav className={"sm:hidden flex h-16 justify-between items-center px-4"}>
       <Link href="/" className="font-bold">
         He's PersonSite
       </Link>
