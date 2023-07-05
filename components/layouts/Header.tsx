@@ -36,7 +36,7 @@ const DesktopNav = ({
   return (
     <nav className={"sm:flex hidden  h-16 justify-between items-center"}>
       <Link href="/" className="font-bold">
-        He's PersonSite
+        {"He's PersonSite"}
       </Link>
       <div className="flex items-center gap-5">
         {links.map((link) => {
@@ -44,9 +44,11 @@ const DesktopNav = ({
             <Link
               key={link.href}
               href={link.href}
-              className={`cursor-pointer hover:text-blue-500 ${
-                pathname === link.href ? "text-blue-500 underline-offset-2" : ""
-              }`}
+              className={
+                "cursor-pointer hover:text-blue-500 " + pathname === link.href
+                  ? "text-blue-500 underline-offset-2"
+                  : ""
+              }
             >
               {link.label}
             </Link>
@@ -69,7 +71,7 @@ const MobileNav = ({
   return (
     <nav className={"sm:hidden flex h-16 justify-between items-center px-4"}>
       <Link href="/" className="font-bold">
-        He's PersonSite
+        {"He's PersonSite"}
       </Link>
       <div className="relative">
         <button onClick={() => setToggleDropdown((prev) => !prev)}>==</button>
@@ -81,10 +83,10 @@ const MobileNav = ({
                   key={link.href}
                   href={link.href}
                   className={
-                    "w-32 block cursor-pointer hover:text-blue-500 " +
-                    (pathname === link.href
+                    "cursor-pointer hover:text-blue-500 " + pathname ===
+                    link.href
                       ? "text-blue-500 underline-offset-2"
-                      : "")
+                      : ""
                   }
                 >
                   {link.label}
@@ -109,7 +111,7 @@ export default function Header({
 
   return (
     <ThemeProvider>
-      <header className="w-full select-none  py-4">
+      <header className="w-full select-none py-4">
         <DesktopNav links={links} />
         <MobileNav links={links} />
       </header>
