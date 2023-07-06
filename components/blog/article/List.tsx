@@ -4,6 +4,7 @@ import Image from "next/image";
 import NProgress from "@/utils/nprogress";
 import request from "@/utils/request";
 import Link from "next/link";
+import Card from "@components/Card";
 
 export interface Article {
   id: string;
@@ -23,7 +24,7 @@ export interface Article {
  */
 const ArticleItem = ({ itemInfo }: { itemInfo: Article }) => {
   return (
-    <article>
+    <Card padding={false} shadow={false}>
       <div
         className={
           "flex flex-col gap-4 xl:flex-row rounded-lg shadow-md xl:shadow-none "
@@ -54,12 +55,12 @@ const ArticleItem = ({ itemInfo }: { itemInfo: Article }) => {
             {itemInfo.description.substring(0, 100)}
           </p>
           <div className="text-sm text-gray-500">
-            <span>发布时间：{itemInfo.created_at}</span>{" "} {itemInfo.id}
+            <span>发布时间：{itemInfo.created_at}</span> {itemInfo.id}
             <span>阅读量：{itemInfo.view_num}</span>
           </div>
         </div>
       </div>
-    </article>
+    </Card>
   );
 };
 

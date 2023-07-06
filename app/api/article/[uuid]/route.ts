@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import dbPool from "@/utils/api/db";
-
+import { connectToDB } from "@utils/databases";
+import Article from "@models/article";
 /**
  *
  * @param request HTTP 请求
@@ -11,14 +12,10 @@ export const GET = async (
   request: Request,
   { params: { uuid } }: { params: { uuid: string } }
 ) => {
-  // 从连接池获取连接
-  const connection = await dbPool.getConnection();
-  // 执行 SQL 查询
-  const [rows, fields]: [any[], any] = await connection.execute(
-    "SELECT * FROM tb_article where id = ? limit 1",
-    [uuid]
-  );
-  const [aritcle = {}] = rows;
+  await connectToDB();
+  const aritcle = await Article.findOne({
+    id: uuid,
+  });
   return NextResponse.json({
     code: 200,
     data: aritcle,
