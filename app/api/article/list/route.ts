@@ -6,9 +6,9 @@ export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
   const page = Number(searchParams.get("page")) ?? 1;
   const limit = Number(searchParams.get("limit")) ?? 10;
-
-  const total = await Article.count();
   await connectToDB();
+  const total = await Article.count();
+  
   const res = await Article.find()
     .limit(limit)
     .skip((page - 1) * limit);
