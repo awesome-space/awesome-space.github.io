@@ -7,7 +7,7 @@ import { startSrollNProgress } from "@utils/nprogress";
 import Image from "next/image";
 import day from "@public/svg/day-mode.svg";
 import night from "@public/svg/night-mode.svg";
-
+import AuthProvider from "@components/AuthProvider";
 /**
  * 模式切换组件
  * @returns React.JSX.Element
@@ -27,68 +27,27 @@ const DarkModeToggle = function () {
   );
 };
 
-/**
- * 桌面程序
- *
- * @param param0
- * @returns
- */
-const DesktopNav = ({
+export default function Header({
   links,
 }: {
   links: Array<{ href: string; label: string }>;
-}) => {
-  const pathname = usePathname();
-  return (
-    <nav className={"sm:flex hidden  h-16 justify-between items-center"}>
-      <Link href="/" className="font-bold">
-        {"He's PersonSite"}
-      </Link>
-      <div className="flex items-center gap-5">
-        {links.map((link) => {
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={
-                "cursor-pointer hover:text-blue-500 " + pathname === link.href
-                  ? "text-blue-500 underline-offset-2"
-                  : ""
-              }
-            >
-              {link.label}
-            </Link>
-          );
-        })}
-        <DarkModeToggle />
-      </div>
-    </nav>
-  );
-};
-
-/**
- * 移动端
- * @param param0
- * @returns
- */
-const MobileNav = ({
-  links,
-}: {
-  links: Array<{ href: string; label: string }>;
-}) => {
+}) {
+  useEffect(() => {
+    startSrollNProgress();
+  }, []);
   const pathname = usePathname();
 
-  const [toggleDropdown, setToggleDropdown] = useState(false);
+  const session = null;
 
   return (
-    <nav className={"sm:hidden flex h-16 justify-between items-center px-4"}>
-      <Link href="/" className="font-bold">
-        {"He's PersonSite"}
-      </Link>
-      <div className="relative">
-        <button onClick={() => setToggleDropdown((prev) => !prev)}>==</button>
-        {toggleDropdown && (
-          <div className="flex flex-col absolute top-5 flex-shrink-0">
+    <ThemeProvider>
+      <nav className={"navbar"}>
+        <div className="flex justify-between py-2">
+          <Link href="/" className="font-bold">
+            {"He's PersonSite"}
+          </Link>
+          {/* 菜单列表 */}
+          <div className="sm:flex hidden text-small gap-7">
             {links.map((link) => {
               return (
                 <Link
@@ -105,29 +64,10 @@ const MobileNav = ({
                 </Link>
               );
             })}
-            <DarkModeToggle />
+            <DarkModeToggle></DarkModeToggle>
           </div>
-        )}
-      </div>
-    </nav>
-  );
-};
-
-export default function Header({
-  links,
-}: {
-  links: Array<{ href: string; label: string }>;
-}) {
-  useEffect(() => {
-    startSrollNProgress();
-  }, []);
-
-  return (
-    <ThemeProvider>
-      <header className="w-full select-none py-4">
-        <DesktopNav links={links} />
-        <MobileNav links={links} />
-      </header>
+        </div>
+      </nav>
     </ThemeProvider>
   );
 }

@@ -27,14 +27,13 @@ const ArticleSchema = new Schema({
   },
 });
 
-
-ArticleSchema.virtual('id').get(function() {
+ArticleSchema.virtual("id").get(function () {
   return this._id.toHexString();
 });
 
 // Ensure virtual fields are serialised.
-ArticleSchema.set('toJSON', {
-  virtuals: true
+ArticleSchema.set("toJSON", {
+  virtuals: true,
 });
 
 const Article = models.Article || model("Article", ArticleSchema);

@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <div
-      className={` dark:bg-black dark:text-white flex ease-linear duration-500 h-full scroll ${inter.className}`}
+      className={` dark:bg-black dark:text-white flex ease-linear duration-500 min-h-screen scroll ${inter.className}`}
     >
       <Layout>{children}</Layout>
       <Analytics />
