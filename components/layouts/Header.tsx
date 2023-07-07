@@ -7,7 +7,8 @@ import { startSrollNProgress } from "@utils/nprogress";
 import Image from "next/image";
 import day from "@public/svg/day-mode.svg";
 import night from "@public/svg/night-mode.svg";
-import AuthProvider from "@components/AuthProvider";
+import { HamburgerButton } from "@icon-park/react";
+
 /**
  * 模式切换组件
  * @returns React.JSX.Element
@@ -38,7 +39,6 @@ export default function Header({
   const pathname = usePathname();
 
   const session = null;
-
   return (
     <ThemeProvider>
       <nav className={"navbar"}>
@@ -65,6 +65,9 @@ export default function Header({
               );
             })}
             <DarkModeToggle></DarkModeToggle>
+          </div>
+          <div className="sm:hidden flex">
+            <HamburgerButton theme="outline" size="24" fill={"#ffffff"} />
           </div>
         </div>
       </nav>
