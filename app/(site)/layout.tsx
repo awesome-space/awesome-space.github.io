@@ -6,13 +6,6 @@ import { Analytics } from "@vercel/analytics/react";
 import Layout from "@components/layouts/Layout";
 const inter = Inter({ subsets: ["latin"] });
 
-/**
- * 页面元数据
- */
-export const metadata = {
-  title: "Site",
-  description: "Site",
-};
 
 /**
  * 网站的根组件布局

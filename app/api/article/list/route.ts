@@ -13,20 +13,12 @@ export const GET = async (req: Request) => {
   const page = Number(searchParams.get("page")) ?? 1;
   const limit = Number(searchParams.get("limit")) ?? 10;
 
-  // await connectToDB();
-  // const total = await Article.count();
+  await connectToDB();
+  const total = await Article.count();
 
-  // const res = await Article.find()
-  //   .limit(limit)
-  //   .skip((page - 1) * limit);
-
-  const [total] = await pool.execute(
-    "SELECT COUNT(*) as total FROM tb_article"
-  );
-  const [list] = await pool.query("SELECT * FROM tb_article limit ?,?", [
-    (page - 1) * limit,
-    limit,
-  ]);
+  const list = await Article.find()
+    .limit(limit)
+    .skip((page - 1) * limit);
 
   return NextResponse.json({
     code: 200,

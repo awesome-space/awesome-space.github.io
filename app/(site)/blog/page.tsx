@@ -5,10 +5,6 @@ import ArticleList from "@/components/blog/article/List";
  */
 
 
-export const metadata = {
-  title: 'Articles|AwesomeSpace',
-  description: 'AwesomeSpace',
-}
 
 export default function BlogIndex() {
   return (

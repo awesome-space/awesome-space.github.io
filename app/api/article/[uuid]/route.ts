@@ -13,9 +13,7 @@ export const GET = async (
   { params: { uuid } }: { params: { uuid: string } }
 ) => {
   await connectToDB();
-  const aritcle = await Article.findOne({
-    id: uuid,
-  });
+  const aritcle = await Article.findById(uuid);
   return NextResponse.json({
     code: 200,
     data: aritcle,

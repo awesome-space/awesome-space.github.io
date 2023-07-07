@@ -7,8 +7,8 @@ import '@icon-park/react/styles/index.css';
  * 页面元数据
  */
 export const metadata = {
-  title: "Site",
-  description: "Site",
+  title: "He's PersonSite",
+  description: "He's PersonSite",
 };
 
 /**

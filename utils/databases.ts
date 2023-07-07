@@ -13,7 +13,11 @@ export const connectToDB = async () => {
       console.log("MONGODB_URI is find undefined 检查 MONGODB_URI 配置");
       return;
     }
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI, {
+      user: process.env.MONGODB_USER,
+      pass: process.env.MONGODB_PASSWORD,
+      dbName: process.env.MONGODB_DATABASE,
+    });
     isConnected = true;
     console.log("数据库连接成功");
   } catch (error) {
