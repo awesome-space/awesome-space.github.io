@@ -22,6 +22,13 @@ export const ThemeContext = createContext({} as ThemeContextType);
 const switchHtmlClass = (theme: string) => {
   const html_classList = document.documentElement.classList;
   theme === "dark" ? html_classList.add("dark") : html_classList.remove("dark");
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href =
+    theme === "dark"
+      ? "/github-markdown-dark.css"
+      : "/github-markdown-light.css";
+  document.head.appendChild(link);
 };
 
 /**

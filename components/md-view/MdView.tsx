@@ -1,6 +1,5 @@
 "use client";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import "@styles/github-markdown-light.css";
 
 interface Article {
   id: string;
