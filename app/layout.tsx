@@ -1,7 +1,7 @@
 import "nprogress/nprogress.css";
 import "@styles/globals.css";
 import "@public/fonts/iconfont.css";
-import '@icon-park/react/styles/index.css';
+import "@icon-park/react/styles/index.css";
 
 /**
  * 页面元数据

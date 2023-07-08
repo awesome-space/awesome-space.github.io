@@ -5,7 +5,7 @@
 body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  background-color: #61B6EB;
+  background-color: #61b6eb;
 }
 
 body::-webkit-scrollbar-track {
@@ -22,10 +22,11 @@ body::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
 
-
 @layer components {
   code {
-    @apply  leading-relaxed;
+    @apply leading-relaxed;
+  }
+  .markdown-body {
+    @apply mx-auto w-full;
   }
 }
-
