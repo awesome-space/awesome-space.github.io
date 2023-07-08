@@ -3,7 +3,12 @@ import { NextResponse } from "next/server";
 
 const zhihuHot = async () => {
   const { data = [] } = await fetchUtils.get(
-    "https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=5"
+    "https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=5",
+    {
+      next: {
+        revalidate: 0,
+      },
+    }
   );
 
   return data.map((item: any) => {
@@ -22,7 +27,11 @@ const zhihuHot = async () => {
 const weiboHot = async () => {
   const {
     data: { realtime = [] },
-  } = await fetchUtils.get("https://weibo.com/ajax/side/hotSearch");
+  } = await fetchUtils.get("https://weibo.com/ajax/side/hotSearch", {
+    next: {
+      revalidate: 0,
+    },
+  });
 
   return realtime.map((item: any) => {
     const { note: title, word_scheme } = item;

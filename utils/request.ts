@@ -1,5 +1,5 @@
 const fetchUtils = {
-  async get(url: string, headers = {}) {
+  async get(url: string, { headers = {}, next = {} } = {}) {
     try {
       const BASE_URL = "/api/";
       const reqURL =
@@ -12,6 +12,7 @@ const fetchUtils = {
           "Content-Type": "application/json",
           ...headers,
         },
+        next,
       });
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
