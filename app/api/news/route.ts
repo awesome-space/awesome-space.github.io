@@ -42,23 +42,43 @@ const weiboHot = async () => {
   });
 };
 
+const newsTypes: { type: string; name: string; callBack: Function }[] = [
+  {
+    type: "zhihu",
+    name: "知乎热榜",
+    callBack: zhihuHot,
+  },
+  {
+    type: "weibo",
+    name: "微博热榜",
+    callBack: weiboHot,
+  },
+];
+
 /**
  * GET 请求
  */
-export const GET = async () => {
+export const GET = async (req: Request) => {
+  const { searchParams } = new URL(req.url);
+  const type = searchParams.get("type");
+  const { callBack } = newsTypes.find((item) => item.type === type) ?? {};
+  if (callBack) {
+    return NextResponse.json({
+      code: 200,
+      data: await callBack(),
+    });
+  }
+  const res = [];
+  for (let item of newsTypes) {
+    const { type, name, callBack } = item;
+    res.push({
+      type,
+      name,
+      data: await callBack(),
+    });
+  }
   return NextResponse.json({
     code: 200,
-    data: [
-      {
-        type: "zhihu",
-        name: "知乎热榜",
-        data: await zhihuHot(),
-      },
-      {
-        type: "weibo",
-        name: "微博热榜",
-        data: await weiboHot(),
-      },
-    ],
+    data: res,
   });
 };
