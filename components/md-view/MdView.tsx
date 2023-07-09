@@ -1,6 +1,8 @@
 "use client";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
+import { useEffect } from "react";
 interface Article {
   id: string;
   cover: string;
@@ -18,11 +20,11 @@ const Category = ({ className }: { className: string }) => {
 };
 
 export default function MdView({ mdText }: { mdText: string }) {
-  /*  useEffect(() => {
+  useEffect(() => {
     document.querySelectorAll("pre code").forEach((el: Element) => {
       hljs.highlightElement(el as HTMLPreElement);
     });
-  }); */
+  });
   return (
     <div className="flex">
       <div className="markdown-body">

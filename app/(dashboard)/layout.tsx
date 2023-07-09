@@ -22,8 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full">
-      <body>{children}</body>
-    </html>
+    <div
+      className={` dark:bg-black dark:text-white flex ease-linear duration-500 h-full scroll ${inter.className}`}
+    >
+      {children}
+    </div>
   );
 }
