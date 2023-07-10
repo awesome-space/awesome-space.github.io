@@ -3,10 +3,7 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import "github-markdown-css";
-import "highlight.js/styles/github.css";
 import { useEffect } from "react";
-import hljs from "highlight.js";
-import "highlight.js/styles/github.css";
 // https://tiptap.dev/api/utilities/html
 
 const handleKeyDown = (event: any) => {
@@ -17,16 +14,15 @@ const handleKeyDown = (event: any) => {
   }
 };
 
-const Tiptap = () => {
+const Tiptap = ({ content }: { content?: string }) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class:
-          "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none",
+        class: "prose prose-xl mx-auto focus:outline-none",
       },
     },
     extensions: [StarterKit],
-    content: "# niahdo",
+    content: content,
   });
 
   useEffect(() => {
