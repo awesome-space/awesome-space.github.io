@@ -1,6 +1,9 @@
 import "nprogress/nprogress.css";
 import "@/public/fonts/iconfont.css";
 
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
+
 /**
  * 页面元数据
  */
@@ -19,5 +22,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <div
+      className={` dark:bg-black dark:text-white flex ease-linear duration-500 h-full ${inter.className}`}
+    >
+      {children}
+    </div>
+  );
 }

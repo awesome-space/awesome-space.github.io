@@ -5,7 +5,7 @@ const fetchUtils = {
       const reqURL =
         url.startsWith("http://") || url.startsWith("https://")
           ? url
-          : `${BASE_URL}/${url}`;
+          : `${BASE_URL}${url}`;
       const response = await fetch(reqURL, {
         method: "GET",
         headers: {
