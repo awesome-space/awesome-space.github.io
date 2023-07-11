@@ -1,10 +1,9 @@
 "use client";
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import "github-markdown-css";
+import { EditorContent, Editor } from "@tiptap/react";
 import { useEffect } from "react";
-// https://tiptap.dev/api/utilities/html
+import "github-markdown-css";
+
 
 const handleKeyDown = (event: any) => {
   if (event.ctrlKey && event.key === "s") {
@@ -14,25 +13,69 @@ const handleKeyDown = (event: any) => {
   }
 };
 
-const Tiptap = ({ content }: { content?: string }) => {
-  const editor = useEditor({
-    editorProps: {
-      attributes: {
-        class: "prose prose-xl mx-auto focus:outline-none",
-      },
-    },
-    extensions: [StarterKit],
-    content: content,
-  });
+/***
+ * 菜单栏
+ */
+const MenuBar = ({ editor }: { editor: Editor | null }) => {
+  if (!editor) {
+    return null;
+  }
 
+  const menus = [
+    {
+      onClick: () => editor.chain().focus().toggleCode().run(),
+      disabled: !editor.can().chain().focus().toggleCode().run(),
+      className: editor.isActive("code") ? "is-active" : "",
+      label: "标记为代码",
+    },
+    {
+      onClick: () => editor.chain().focus().toggleCodeBlock().run(),
+      className: editor.isActive("codeBlock") ? "is-active" : "",
+      label: "代码块",
+    },
+    {
+      onClick: () => editor.chain().focus().unsetAllMarks().run(),
+      label: "清除格式",
+    },
+    {
+      onClick: () => editor.chain().focus().undo().run(),
+      label: "撤销",
+    },
+    {
+      onClick: () => editor.chain().focus().redo().run(),
+      label: "重做",
+    },
+  ];
+
+  return (
+    <>
+      {menus.map((item, index) => {
+        return (
+          <button
+            {...item}
+            className={`${item.className}`}
+            key={"menu_" + index}
+          >
+            {item.label}
+          </button>
+        );
+      })}
+    </>
+  );
+};
+
+const Tiptap = ({ editor }: { editor: Editor }) => {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   });
-
-  return <EditorContent editor={editor} />;
+  return (
+    <div className="px-8">
+      <MenuBar editor={editor} /> <EditorContent editor={editor} />
+    </div>
+  );
 };
 
 export default Tiptap;

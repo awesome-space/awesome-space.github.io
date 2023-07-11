@@ -29,4 +29,8 @@ body::-webkit-scrollbar-thumb {
   .markdown-body {
     @apply mx-auto w-full;
   }
+
+  .ProseMirror {
+    @apply markdown-body;
+  }
 }

@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const ArticleSchema = new Schema({
   title: {
@@ -9,13 +9,13 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
-  md_text: {
+  html: {
     type: String,
     required: true,
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   craete_at: {
     type: Date,
@@ -37,6 +37,5 @@ ArticleSchema.set("toJSON", {
 });
 
 const Article = models.Article || model("Article", ArticleSchema);
-export const Article_ = models.Copy || model("Copy", ArticleSchema);
 
 export default Article;
