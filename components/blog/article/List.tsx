@@ -52,7 +52,7 @@ const ArticleItem = ({ itemInfo }: { itemInfo: Article }) => {
             </Link>
           </h2>
           <p className="md:p-1 text-sm select-none overflow-ellipsis text-gray-500 overflow-hidden">
-            {itemInfo.description.substring(0, 100)}
+            {itemInfo.description?.substring(0, 100)}
           </p>
           <div className="text-sm text-gray-500">
             <span>发布时间：{itemInfo.created_at}</span> {itemInfo.id}
