@@ -12,7 +12,6 @@ import {
 } from "@tiptap/react";
 
 
-import "highlight.js/styles/github.css";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
 import ts from "highlight.js/lib/languages/typescript";
@@ -50,7 +49,7 @@ export default () => {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "markdown-body",
+        class: "prose ",
       },
     },
     extensions: [
