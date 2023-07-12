@@ -1,8 +1,7 @@
 "use client";
 import MarkdownEditor from "@components/md-editor/MdEditor";
-import fetchUtils from "@utils/request";
+import { post } from "@utils/request";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
-import { marked } from "marked";
 import { useEditor, EditorContent, Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -39,6 +38,7 @@ const Slider = ({
 export default function ArticleEdit() {
   const [aritcleList, setArticleList] = useState([] as any[]);
   const [currMd, setCurrMd] = useState({} as any);
+  const [articleData, setArticleData] = useState({} as any);
 
   const editor = useEditor({
     extensions: [StarterKit, Underline],
@@ -50,9 +50,27 @@ export default function ArticleEdit() {
     content: "",
     onUpdate({ editor }) {
       const html = editor.getHTML();
-      console.log(html);
+      setArticleData((prev: any) => {
+        prev["title"] = "不改";
+        prev["html"] = html;
+        return prev;
+      });
     },
   });
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
+  const handleKeyDown = async (event: any) => {
+    if (event.ctrlKey && event.key === "s") {
+      event.preventDefault();
+      const { res, code } = await post("/article", { body: articleData });
+    }
+  };
 
   return (
     <div className="flex justify-between w-full h-full">

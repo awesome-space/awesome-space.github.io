@@ -1,15 +1,18 @@
-const baseFetch = async (url: string, { headers = {}, next = {} } = {}) => {
+const baseFetch = async (
+  url: string,
+  { headers = {}, next = {}, method = "GET", body = "" } = {}
+) => {
+  console.log(method);
+  
   const BASE_URL = "/api/";
   const reqURL =
     url.startsWith("http://") || url.startsWith("https://")
       ? url
       : `${BASE_URL}${url}`;
   const response = await fetch(reqURL, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      ...headers,
-    },
+    method,
+    headers,
+    body,
     next,
   });
   return response;
@@ -18,7 +21,38 @@ const baseFetch = async (url: string, { headers = {}, next = {} } = {}) => {
 export const get = async (url: string, { headers = {}, next = {} } = {}) => {
   try {
     const response = await baseFetch(url, {
+      method: "GET",
       headers,
+      next,
+    });
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * post 请求
+ * @param url
+ * @param param1
+ */
+export const post = async (
+  url: string,
+  { headers = {}, next = {}, body = {} } = {}
+) => {
+  try {
+    const response = await baseFetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...headers,
+      },
+      body: JSON.stringify(body),
       next,
     });
     if (!response.ok) {

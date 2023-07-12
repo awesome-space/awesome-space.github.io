@@ -4,15 +4,6 @@ import { EditorContent, Editor } from "@tiptap/react";
 import { useEffect } from "react";
 import "github-markdown-css";
 
-
-const handleKeyDown = (event: any) => {
-  if (event.ctrlKey && event.key === "s") {
-    event.preventDefault(); // prevent the default action (save page dialog)
-    console.log("已保存");
-    // your logic here...
-  }
-};
-
 /***
  * 菜单栏
  */
@@ -65,12 +56,6 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
 };
 
 const Tiptap = ({ editor }: { editor: Editor }) => {
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  });
   return (
     <div className="px-8">
       <MenuBar editor={editor} /> <EditorContent editor={editor} />
