@@ -49,7 +49,7 @@ export default () => {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "prose ",
+        class: "prose flex-1",
       },
     },
     extensions: [
